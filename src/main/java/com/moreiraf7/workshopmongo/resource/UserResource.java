@@ -1,5 +1,6 @@
 package com.moreiraf7.workshopmongo.resource;
 
+import com.moreiraf7.workshopmongo.domain.Post;
 import com.moreiraf7.workshopmongo.domain.User;
 import com.moreiraf7.workshopmongo.dto.UserDTO;
 import com.moreiraf7.workshopmongo.service.UserService;
@@ -26,6 +27,7 @@ public class UserResource {
         List<UserDTO> listDto = list.stream().map(x -> new UserDTO(x)).collect(Collectors.toList());
         return ResponseEntity.ok().body(listDto);
     }
+
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<UserDTO> findById(@PathVariable String id){
@@ -56,5 +58,12 @@ public class UserResource {
         User obj = service.fromDTO(objDto);
         service.update(id, obj);
         return ResponseEntity.noContent().build();
+    }
+
+    //Operacao para retornar os posts do usuario
+    @GetMapping(value = "/{id}/posts")
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id){
+        List<Post> posts = service.findById(id).getPosts();
+        return ResponseEntity.ok().body(posts);
     }
 }

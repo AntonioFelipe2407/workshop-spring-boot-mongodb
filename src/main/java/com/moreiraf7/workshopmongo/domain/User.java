@@ -2,10 +2,13 @@ package com.moreiraf7.workshopmongo.domain;
 
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.annotation.processing.Generated;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Document
@@ -15,6 +18,10 @@ public class User implements Serializable {
     private String id;
     private String name;
     private String email;
+
+    // Annotation diz que é uma referencia a outro document
+    @DBRef(lazy = true) // Lazy = true garante que os posts so serão carregados se forem explicitamente acessados
+    private List<Post> posts = new ArrayList<>(); // Referenciando os posts do usuario
 
     public User() {
     }
@@ -47,6 +54,14 @@ public class User implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 
     @Override
