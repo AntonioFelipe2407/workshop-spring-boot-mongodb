@@ -2,11 +2,13 @@ package com.moreiraf7.workshopmongo.dto;
 
 import com.moreiraf7.workshopmongo.domain.User;
 
+import java.io.Serializable;
+
 /*
   AuthorDTO projeta os dados da Entidade User (apenas, name e email)
  */
 
-public class AuthorDTO {
+public class AuthorDTO implements Serializable {
 
     private String id;
     private String name;
@@ -14,7 +16,7 @@ public class AuthorDTO {
     public AuthorDTO() {
     }
 
-    public AuthorDTO(User obj){
+    public AuthorDTO(User obj) {
         this.id = obj.getId();
         this.name = obj.getName();
     }
