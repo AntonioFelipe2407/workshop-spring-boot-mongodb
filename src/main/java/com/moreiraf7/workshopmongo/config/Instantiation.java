@@ -2,6 +2,7 @@ package com.moreiraf7.workshopmongo.config;
 
 import com.moreiraf7.workshopmongo.domain.Post;
 import com.moreiraf7.workshopmongo.domain.User;
+import com.moreiraf7.workshopmongo.dto.AuthorDTO;
 import com.moreiraf7.workshopmongo.repository.PostRepository;
 import com.moreiraf7.workshopmongo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +34,9 @@ public class Instantiation implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(u1, u2, u3, u4));
 
-        Post p1 = new Post(null, Instant.now(), "Partiu Festa", "Hoje eu vou encher a cara HAHAHA", u1);
-        Post p2 = new Post(null, Instant.now(), "Partiu igreja", "Hoje eu vou rezar muito hahaha", u2);
-        Post p3 = new Post(null, Instant.now(), "Indo para Faculdade", "Hoje eu vou estudar muito kkk", u1);
+        Post p1 = new Post(null, Instant.now(), "Partiu Festa", "Hoje eu vou encher a cara HAHAHA", new AuthorDTO(u1));
+        Post p2 = new Post(null, Instant.now(), "Partiu igreja", "Hoje eu vou rezar muito hahaha", new AuthorDTO(u2));
+        Post p3 = new Post(null, Instant.now(), "Indo para Faculdade", "Hoje eu vou estudar muito kkk", new AuthorDTO(u2));
 
         postRepository.saveAll(Arrays.asList(p1, p2, p3));
 
