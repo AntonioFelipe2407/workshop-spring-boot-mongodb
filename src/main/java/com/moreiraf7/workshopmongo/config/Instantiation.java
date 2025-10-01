@@ -1,5 +1,6 @@
 package com.moreiraf7.workshopmongo.config;
 
+import com.moreiraf7.workshopmongo.dto.CommentDTO;
 import com.moreiraf7.workshopmongo.domain.Post;
 import com.moreiraf7.workshopmongo.domain.User;
 import com.moreiraf7.workshopmongo.dto.AuthorDTO;
@@ -45,6 +46,17 @@ public class Instantiation implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(u1, u2));
 
+        CommentDTO c1 = new CommentDTO("HAHAHA também vou hoje ;)", Instant.now(), new AuthorDTO(u3));
+        CommentDTO c2 = new CommentDTO("Amemmm haha", Instant.now(), new AuthorDTO(u1));
+        CommentDTO c3 = new CommentDTO("VAMO CURTIR MUITO", Instant.now(), new AuthorDTO(u2));
+        CommentDTO c4 = new CommentDTO("Hoje é matematica?", Instant.now(), new AuthorDTO(u1));
+        CommentDTO c5 = new CommentDTO("Dia de ouvir mta musicaaaa", Instant.now(), new AuthorDTO(u3));
+
+        p1.getComments().addAll(Arrays.asList(c1, c3, c5));
+        p2.getComments().add(c2);
+        p3.getComments().add(c4);
+
+        postRepository.saveAll(Arrays.asList(p1, p2 ,p3));
 
     }
 }
