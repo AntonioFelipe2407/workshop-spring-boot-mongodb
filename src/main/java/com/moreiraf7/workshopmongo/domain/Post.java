@@ -1,6 +1,5 @@
 package com.moreiraf7.workshopmongo.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.moreiraf7.workshopmongo.dto.AuthorDTO;
 import com.moreiraf7.workshopmongo.dto.CommentDTO;
 import org.springframework.data.annotation.Id;
@@ -17,8 +16,6 @@ public class Post implements Serializable {
 
     @Id
     private String id;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant date;
     private String title;
     private String body;
