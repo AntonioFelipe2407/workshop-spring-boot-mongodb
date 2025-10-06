@@ -26,7 +26,7 @@ public class PostResource {
     @GetMapping(value = "/titleserch")         //Anotation RequestParams para dizer que a palavra sera passada na URL"
     public ResponseEntity<List<Post>> findByWord(@RequestParam(value = "text", defaultValue = "") String text) {
         text = URL.decodeParam(text);  //Decodifica a palavra passada
-        List<Post> list = service.findByWord(text);
+        List<Post> list = service.findByTitle(text);
         return ResponseEntity.ok().body(list);
     }
 }

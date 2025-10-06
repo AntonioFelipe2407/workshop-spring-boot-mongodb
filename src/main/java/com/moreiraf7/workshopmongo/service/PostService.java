@@ -20,8 +20,8 @@ public class PostService {
         return post.orElseThrow(() -> new ObjectNotFoundException(id));
     }
 
-    public List<Post> findByWord(String text){
-        return repository.findByTitleContainingIgnoreCase(text);
+    public List<Post> findByTitle(String text) {
+        return repository.searchTitle(text);
     }
 
 }
